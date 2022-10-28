@@ -7,12 +7,20 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         return dateFormatter.string(from: self)
-    }
+}
     
     func getDateString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: self)
+    }
+    
+    func plusDays(_ days: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+    
+    func minusDays(_ days: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: -days, to: self)!
     }
     
     var startOfDay: Date {

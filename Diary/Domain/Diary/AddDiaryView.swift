@@ -13,32 +13,37 @@ struct AddDiaryView: View {
     @State private var inputText: String = ""
     
     var body: some View {
-        VStack(spacing: 30) {
-            Text("Write Diary")
-                .font(.largeTitle)
-            TextEditor(text: $inputText)
-                .cornerRadius(20)
-                .foregroundColor(Color.red)
-                .colorMultiply(Color(red: 239/255, green: 243/255, blue: 244/255, opacity: 1))
-                .frame(height: 200)
-                .padding()
-            HStack {
-                Button(action: {
-                    storage.contents.append(DiaryList(content: inputText))
-                    diaryFetcher.postDiary(content: inputText) {
-                        diaryFetcher.getDiaries(parameters: ["size":"1000"])
+            VStack(spacing: 30) {
+                Text("2022년 8월 27일")
+                    .font(.custom("Cafe24SsurroundAir", size: 26))
+                TextEditor(text: $inputText)
+                    .background(Color.red)
+                    .foregroundColor(Color.black)
+//                    .colorMultiply(Color(red: 1, green: 1, blue: 1, opacity: 0.5))
+                    .frame(height: .infinity)
+                
+                HStack {
+                    Button(action: {
+                        storage.contents.append(DiaryList(content: inputText))
+                        diaryFetcher.postDiary(content: inputText) {
+                            diaryFetcher.getDiaries(parameters: ["size":"1000"])
+                        }
+                        isAddViewShow = false
+                    }) {
+                        Text("ADD")
                     }
-                    isAddViewShow = false
-                }) {
-                    Text("ADD")
-                }
-                Button(action: {
-                isAddViewShow = false
-                }) {
-                    Text("CANCEL")
-                }
+                    Button(action: {
+                        isAddViewShow = false
+                    }) {
+                        Text("CANCEL")
+                    }
+                }.frame(maxHeight: .infinity, alignment: .bottom)
             }
-            Spacer()
+        .background(content: {
+            Image("paper_background").resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+        }).task {
         }
     }
 }

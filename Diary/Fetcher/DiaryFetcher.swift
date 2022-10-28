@@ -64,7 +64,7 @@ class DiaryFetcher: ObservableObject {
             }
     }
     
-    func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escaping () -> Void = {}) {
+func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escaping () -> Void = {}) {
         let parameters: Parameters = [
             "startDate": startDate.getDateString(),
             "endDate": endDate.getDateString()

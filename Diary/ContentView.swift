@@ -17,7 +17,7 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "1.circle")
                 }
-            CalendarView(start: Date(), monthsToShow: 1)
+            CalendarView()
                 .tabItem {
                     Image(systemName: "2.circle")
                 }
