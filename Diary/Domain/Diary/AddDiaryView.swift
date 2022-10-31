@@ -10,18 +10,17 @@ struct AddDiaryView: View {
     
     @EnvironmentObject var diaryFetcher: DiaryFetcher
     
+    @EnvironmentObject var obj: observed
+    
     @State private var inputText: String = ""
     
     var body: some View {
-            VStack(spacing: 30) {
+            VStack(spacing: 30) {    
                 Text("2022년 8월 27일")
-                    .font(.custom("Cafe24SsurroundAir", size: 26))
-                TextEditor(text: $inputText)
-                    .background(Color.red)
-                    .foregroundColor(Color.black)
-//                    .colorMultiply(Color(red: 1, green: 1, blue: 1, opacity: 0.5))
-                    .frame(height: .infinity)
-                
+                    .font(.custom("Caxfe24SsurroundAir", size: 26))
+                ScrollView {
+                    MultiTextField().frame(height: self.obj.size).padding(10)
+                }
                 HStack {
                     Button(action: {
                         storage.contents.append(DiaryList(content: inputText))
@@ -37,7 +36,7 @@ struct AddDiaryView: View {
                     }) {
                         Text("CANCEL")
                     }
-                }.frame(maxHeight: .infinity, alignment: .bottom)
+                }.frame(alignment: .bottom)
             }
         .background(content: {
             Image("paper_background").resizable()
@@ -50,6 +49,6 @@ struct AddDiaryView: View {
 
 struct AddDiary_Previews: PreviewProvider {
     static var previews: some View {
-        AddDiaryView(isAddViewShow: .constant(true), storage: DemoStorage())
+        AddDiaryView(isAddViewShow: .constant(true), storage: DemoStorage()).environmentObject(observed())
     }
 }
