@@ -12,6 +12,7 @@
 		F34EC0DE28BA13B0008080A9 /* Cafe24SsurroundAir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */; };
 		F3651D8E290948E1007C8CDB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F3651D8D290948E1007C8CDB /* FSCalendar */; };
 		F3651D922909492B007C8CDB /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3651D912909492B007C8CDB /* FSCalendarView.swift */; };
+		F3651D942912AB5D007C8CDB /* ACC어린이마음고운체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3651D932912AB5D007C8CDB /* ACC어린이마음고운체.ttf */; };
 		F3A62773289923A200B707EF /* DiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A62772289923A200B707EF /* DiaryApp.swift */; };
 		F3A62775289923A200B707EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A62774289923A200B707EF /* ContentView.swift */; };
 		F3A62777289923A400B707EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A62776289923A400B707EF /* Assets.xcassets */; };
@@ -61,9 +62,10 @@
 		6E865BF1291212F100849E88 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		6E865BF22912133300849E88 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		6E865BF42912333800849E88 /* DiaryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryConfig.swift; sourceTree = "<group>"; };
-		F34EC0DC28BA0F04008080A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F34EC0DC28BA0F04008080A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24SsurroundAir.ttf; sourceTree = "<group>"; };
 		F3651D912909492B007C8CDB /* FSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
+		F3651D932912AB5D007C8CDB /* ACC어린이마음고운체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ACC어린이마음고운체.ttf"; sourceTree = "<group>"; };
 		F3A6276F289923A200B707EF /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A62772289923A200B707EF /* DiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryApp.swift; sourceTree = "<group>"; };
 		F3A62774289923A200B707EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		F34EC0D928BA0D45008080A9 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				F3651D932912AB5D007C8CDB /* ACC어린이마음고운체.ttf */,
 				F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */,
 			);
 			path = Font;
@@ -199,7 +202,6 @@
 				6E865BF32912332500849E88 /* Config */,
 				F3651D8F29094905007C8CDB /* View */,
 				F34EC0E128BA15F5008080A9 /* Image */,
-				F34EC0DC28BA0F04008080A9 /* Info.plist */,
 				F34EC0D928BA0D45008080A9 /* Font */,
 				F3F24F89289E461E008B1D88 /* Fetcher */,
 				F3F24F88289E4604008B1D88 /* Domain */,
@@ -207,6 +209,7 @@
 				F3A627A62899240200B707EF /* Common */,
 				F3A62772289923A200B707EF /* DiaryApp.swift */,
 				F3A62774289923A200B707EF /* ContentView.swift */,
+				F34EC0DC28BA0F04008080A9 /* Info.plist */,
 				F3A62776289923A400B707EF /* Assets.xcassets */,
 				F3A62778289923A400B707EF /* Preview Content */,
 			);
@@ -403,6 +406,7 @@
 				F3A6277A289923A400B707EF /* Preview Assets.xcassets in Resources */,
 				F3A62777289923A400B707EF /* Assets.xcassets in Resources */,
 				F34EC0DE28BA13B0008080A9 /* Cafe24SsurroundAir.ttf in Resources */,
+				F3651D942912AB5D007C8CDB /* ACC어린이마음고운체.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
