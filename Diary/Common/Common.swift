@@ -15,6 +15,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func getDateDotString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        return dateFormatter.string(from: self)
+    }
+    
     func plusDays(_ days: Int) -> Date {
         return Calendar.current.date(byAdding: .day, value: days, to: self)!
     }

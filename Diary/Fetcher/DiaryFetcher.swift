@@ -19,7 +19,7 @@ class DiaryFetcher: ObservableObject {
     }
     
     func postDiary(content: String, completion: @escaping () -> Void = {}) {
-        AF.request("http://localhost:8080/api/diaries", method: .post, parameters: [
+        AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .post, parameters: [
             "content": content
         ], encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
@@ -34,7 +34,7 @@ class DiaryFetcher: ObservableObject {
     }
 
     func getDiaries(parameters: Parameters, completion: @escaping () -> Void = {}) {
-        AF.request("http://localhost:8080/api/diaries", method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: PageResult<DiaryDecodable>.self, decoder: decoder) { response in
                 switch response.result {
@@ -51,7 +51,7 @@ class DiaryFetcher: ObservableObject {
     }
 
     func getDiary(seq: Int64, completion: @escaping () -> Void) {
-        AF.request("http://localhost:8080/api/diaries/\(seq)", method: .get,encoding: URLEncoding.default)
+        AF.request(DiaryConfig.baseUrl + "/api/diaries/\(seq)", method: .get,encoding: URLEncoding.default)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: DiaryDecodable.self, decoder: decoder) { response in
                 switch response.result {
@@ -69,7 +69,8 @@ func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escapi
             "startDate": startDate.getDateString(),
             "endDate": endDate.getDateString()
         ]
-        AF.request("http://localhost:8080/api/diaries/registered-date", method: .get, parameters: parameters, encoding: URLEncoding.default)
+    
+        AF.request(DiaryConfig.baseUrl + "/api/diaries/registered-date", method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: [Date].self, decoder: decoder) { response in
                 switch(response.result) {

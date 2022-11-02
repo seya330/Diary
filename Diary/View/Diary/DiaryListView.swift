@@ -1,12 +1,10 @@
 import SwiftUI
 
-struct HomeView: View {
+struct DiaryListView: View {
     
     @State private var isAddViewShow: Bool = false
     
     @State private var isLoadedContents: Bool = false
-    
-    @ObservedObject var storage: DemoStorage = DemoStorage()
     
     @EnvironmentObject var diaryFetcher: DiaryFetcher
     
@@ -16,25 +14,31 @@ struct HomeView: View {
                 Text("contents is empty")
             } else {
                 NavigationView {
-                    List {
-                        ForEach(diaryFetcher.diaries) { content in
-                            NavigationLink(destination: DiaryDetilView(diarySeq: content.seq)) {
-                                HStack {
-                                    Text(content.content)
-                                    Text(content.registeredAt.myFormat())
+                    ZStack {
+                        List {
+                            ForEach(diaryFetcher.diaries) { content in
+                                NavigationLink(destination: DiaryDetilView(diarySeq: content.seq)) {
+                                    HStack {
+                                        Text(content.content)
+                                        Text(content.registeredAt.myFormat())
+                                    }
                                 }
                             }
+                            .onDelete(perform: deleteDiary)
                         }
-                        .onDelete(perform: deleteDiary)
                     }
-                }
+                }.background(content: {
+                    Image("paper_background").resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .edgesIgnoringSafeArea(.all)
+                })
             }
             Button(action: {isAddViewShow = true}) {
                 Text("Add")
             }
         }
         .fullScreenCover(isPresented: $isAddViewShow) {
-            AddDiaryView(isAddViewShow: $isAddViewShow, storage: storage)
+            AddDiaryView(isAddViewShow: $isAddViewShow)
         }.task {
             diaryFetcher.getDiaries(parameters: ["size":"1000"]) {
                 isLoadedContents = true
@@ -43,13 +47,13 @@ struct HomeView: View {
     }
     
     func deleteDiary (at offsets: IndexSet) {
-        storage.contents.remove(atOffsets: offsets)
+        
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct DiaryListView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        DiaryListView().environmentObject(DiaryFetcher())
     }
 }
 

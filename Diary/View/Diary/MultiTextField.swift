@@ -5,10 +5,10 @@ struct MultiTextField: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
-        view.font = .systemFont(ofSize: 19)
-        view.text = "Type Something"
+        view.font = UIFont(name: "Cafe24SsurroundAir", size: 17)
+        view.text = "글을 입력해 주세요."
         view.textColor = UIColor.black.withAlphaComponent(0.35)
-        view.backgroundColor = .yellow
+        view.backgroundColor = .clear
         view.delegate = context.coordinator
         self.obj.size = view.contentSize.height
         view.isEditable = true
@@ -34,11 +34,10 @@ struct MultiTextField: UIViewRepresentable {
         
         func textViewDidBeginEditing(_ textView: UITextView) {
             textView.text = ""
-            textView.textColor = .black
+            textView.textColor = .black.withAlphaComponent(0.8)
         }
         
         func textViewDidChange(_ textView: UITextView) {
-//            self.parent.obj.size = textView.contentSize.height < 300 ? textView.contentSize.height : 300
             self.parent.obj.size = textView.contentSize.height
         }
     }

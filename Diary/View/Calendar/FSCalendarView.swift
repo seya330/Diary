@@ -31,6 +31,7 @@ struct FSCalendarView: UIViewControllerRepresentable {
             startDate: DateFactory.of(year: first.year, month: first.month, day: first.day),
             endDate: DateFactory.of(year: last.year, month: last.month, day: last.day)
         ) {
+            controller.registeredDate.removeAll()
             diaryFetcher.registeredDates.forEach { date in
                 if let cnt = controller.registeredDate[date.getDateString()] {
                     controller.registeredDate[date.getDateString()]! += cnt
