@@ -35,7 +35,7 @@ func dateToString(date: Date) -> String {
 
 struct DiaryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryDetilView(diarySeq: 1)
+        DiaryDetilView(diarySeq: 1).environmentObject(DiaryFetcher())
     }
 }
 
