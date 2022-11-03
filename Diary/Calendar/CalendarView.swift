@@ -2,10 +2,29 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
+    @State var isAddViewShow: Bool = false
+    
     var body: some View {
         VStack {
             FSCalendarView()
-        }.padding().navigationBarTitle("Mood Calendar", displayMode: .inline)
+            HStack {
+                Spacer()
+                Button {
+                    isAddViewShow = true
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 50))
+                        .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.7))
+                }
+
+                
+            }
+        }
+        .padding()
+        .fullScreenCover(isPresented: $isAddViewShow) {
+            AddDiaryView(isAddViewShow: $isAddViewShow)
+        }
     }
 }
 
