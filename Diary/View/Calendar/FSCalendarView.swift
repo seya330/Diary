@@ -57,6 +57,17 @@ class MyCalendarViewController: UIViewController{
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         calendar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 400)
+        calendar.locale = Locale(identifier: "ko_KR")
+        calendar.appearance.headerTitleFont = UIFont(name: "ACCchildrenheart", size: 23)
+        calendar.appearance.headerTitleColor = UIColor(red: 230/255, green: 129/255, blue: 213/255, alpha: 1)
+        calendar.appearance.headerDateFormat = "YYYY\n\nMM월"
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.headerHeight = calendar.appearance.headerTitleFont.lineHeight*4
+        calendar.appearance.weekdayFont = UIFont(name: "ACCchildrenheart", size: 20)
+        calendar.appearance.titleColors
+        calendar.appearance.titleFont = UIFont(name: "ACCchildrenheart", size: 18)
+        calendar.scrollEnabled = true
+        
         view.addSubview(calendar)
     }
     

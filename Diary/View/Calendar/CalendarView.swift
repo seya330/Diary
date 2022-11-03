@@ -5,7 +5,12 @@ struct CalendarView: View {
     var body: some View {
         VStack {
             FSCalendarView()
-        }.padding().navigationBarTitle("Mood Calendar", displayMode: .inline)
+        }
+        .padding()
+        .background {
+            Image("paper_background").resizable()
+                .ignoresSafeArea()
+        }
     }
 }
 

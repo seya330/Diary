@@ -146,6 +146,7 @@
 		6E9834162912713000E45691 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				F3A627A42899240200B707EF /* CalendarView.swift */,
 				F3651D912909492B007C8CDB /* FSCalendarView.swift */,
 			);
 			path = Calendar;
@@ -251,7 +252,6 @@
 				F3A627A12899240200B707EF /* Helper.swift */,
 				F3A627A22899240200B707EF /* Colors.swift */,
 				F3A627A32899240200B707EF /* DayCellView.swift */,
-				F3A627A42899240200B707EF /* CalendarView.swift */,
 				F3A627A52899240200B707EF /* WeekdaysView.swift */,
 				F3F24F8C28A24E20008B1D88 /* Month2.swift */,
 			);
