@@ -59,14 +59,23 @@ class MyCalendarViewController: UIViewController{
         calendar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 400)
         calendar.locale = Locale(identifier: "ko_KR")
         calendar.appearance.headerTitleFont = UIFont(name: "ACCchildrenheart", size: 23)
-        calendar.appearance.headerTitleColor = UIColor(red: 230/255, green: 129/255, blue: 213/255, alpha: 1)
+        calendar.appearance.headerTitleColor = UIColor(red: 242/255, green: 163/255, blue: 27/255, alpha: 1)
         calendar.appearance.headerDateFormat = "YYYY\n\nMM월"
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.headerHeight = calendar.appearance.headerTitleFont.lineHeight*4
         calendar.appearance.weekdayFont = UIFont(name: "ACCchildrenheart", size: 20)
         calendar.appearance.titleFont = UIFont(name: "ACCchildrenheart", size: 18)
         calendar.scrollEnabled = true
+        calendar.appearance.selectionColor = .clear
+        calendar.appearance.titleSelectionColor = .black
+        calendar.appearance.todayColor = UIColor(red: 196/255, green: 127/255, blue: 8/255, alpha: 0.2)
+        let weekDayColor = UIColor(red: 196/255, green: 127/255, blue: 8/255, alpha: 1)
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = UIColor(red: 230/255, green: 84/255, blue: 73/255, alpha: 1)
+        calendar.calendarWeekdayView.weekdayLabels[1].textColor = weekDayColor
+        calendar.calendarWeekdayView.weekdayLabels[2].textColor = weekDayColor
+        calendar.calendarWeekdayView.weekdayLabels[3].textColor = weekDayColor
+        calendar.calendarWeekdayView.weekdayLabels[4].textColor = weekDayColor
+        calendar.calendarWeekdayView.weekdayLabels[5].textColor = weekDayColor
         calendar.calendarWeekdayView.weekdayLabels[6].textColor = UIColor(red: 12/255, green: 168/255, blue: 235/255, alpha: 1)
         view.addSubview(calendar)
     }
@@ -85,16 +94,15 @@ extension FSCalendarView {
         }
         
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            if monthPosition == .previous || monthPosition == .next {
-                calendar.setCurrentPage(date, animated: true)
-                parent.loadData()
-            }
-            
-            //TODO 다시한번 다이어리 작성 되어 있는지 확인 call
-            
             if let seq = parent.controller.registeredSeq[date.getDateString()] {
                 parent.seq = seq
                 parent.isShowDetailView = true
+                return
+            }
+            
+            if monthPosition == .previous || monthPosition == .next {
+                calendar.setCurrentPage(date, animated: true)
+                parent.loadData()
             }
         }
         
