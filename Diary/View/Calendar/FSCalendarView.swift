@@ -13,6 +13,8 @@ struct FSCalendarView: UIViewControllerRepresentable {
     init() {
         controller = MyCalendarViewController()
         navi = UINavigationController(rootViewController: controller)
+        navi.navigationBar.tintColor = UIColor(red: 242/255, green: 163/255, blue: 27/255, alpha: 0.6)
+        navi.navigationBar.topItem?.title = ""
     }
     
     func makeUIViewController(context: Context) -> UINavigationController {
@@ -48,7 +50,8 @@ struct FSCalendarView: UIViewControllerRepresentable {
 
     private func showDiaryDetail(seq: Int64) {
         let hostingConroller = UIHostingController(rootView: DiaryDetilView(diarySeq: seq))
-        navi.pushViewController(hostingConroller, animated: true)
+        hostingConroller.view.backgroundColor = .clear
+        navi.pushViewController(hostingConroller, animated: false)
     }
 }
 

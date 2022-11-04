@@ -14,16 +14,16 @@ struct DiaryDetilView: View {
     
     var body: some View {
         if !isLoaded {
-            Text("Loading..")
-                .task {
-                    diaryFetcher.getDiary(seq: diarySeq) {
-                        isLoaded = true
+            ZStack {
+                ProgressView()
+                    .task {
+                        diaryFetcher.getDiary(seq: diarySeq) {
+                            isLoaded = true
+                        }
                     }
-                    
-                }
+            }
         } else {
             DiaryDetailViewImpl(diary: diaryFetcher.recentDiary)
-            
         }
     }
 }
@@ -57,7 +57,6 @@ struct DiaryDetailViewImpl: View {
                     .frame(width: 120)
                 line
             }
-//            .padding(.top, 10)
             Section {
                 ScrollView {
                     Text(diary.content)
