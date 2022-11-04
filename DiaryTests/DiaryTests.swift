@@ -144,14 +144,6 @@ class DiaryTests: XCTestCase {
     }
     
     func testDateComponents() throws {
-        let month: Month = Month(startDate: Date(), selectableDays: true)
-        let month2: Month2 = Month2(startDate: Date(), selectableDays: true)
-        let monthday = month.monthDays
-        let monthday2 = month2.monthDays
-        print(1)
-//        print(month.monthDays[4+1]![4])
-        
-        
     }
 
     func testPerformanceExample() throws {

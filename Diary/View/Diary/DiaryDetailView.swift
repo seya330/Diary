@@ -14,27 +14,25 @@ struct DiaryDetilView: View {
     
     var body: some View {
         if !isLoaded {
-            Text("Loading..")
-                .task {
-                    diaryFetcher.getDiary(seq: diarySeq) {
-                        isLoaded = true
+            ZStack {
+                ProgressView()
+                    .task {
+                        diaryFetcher.getDiary(seq: diarySeq) {
+                            isLoaded = true
+                        }
                     }
-                    
-                }
+                Image("paper_background").resizable()
+                    .ignoresSafeArea()
+            }
         } else {
             DiaryDetailViewImpl(diary: diaryFetcher.recentDiary)
         }
     }
 }
 
-
-func dateToString(date: Date) -> String {
-    date.dateToString(format: "yyyy-MM-dd")
-}
-
 struct DiaryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryDetilView(diarySeq: 1)
+        DiaryDetilView(diarySeq: 1).environmentObject(DiaryFetcher())
     }
 }
 
@@ -44,21 +42,41 @@ struct DiaryDetailViewImpl: View {
     
     var body: some View {
         VStack {
-            Text("작성일 " + dateToString(date: diary.registeredAt))
-            Divider()
-            Spacer()
+            HStack {
+                line
+                line
+                line
+                line
+                line
+                Text(diary.registeredAt.getDateString())
+                    .font(Font.custom("ACCchildrenheart", size: 22))
+                    .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 1))
+                    .frame(width: 120)
+                line
+            }
             Section {
-                VStack(spacing: 10) {
-                    ScrollView(showsIndicators: false) {
-                        Text(diary.content)
-                    }
-                    .padding()
+                ScrollView {
+                    Text(diary.content)
+                        .font(Font.custom("ACCchildrenheart", size: 22))
+                        .foregroundColor(.black.opacity(0.7))
                 }
             }
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color(red: 239/255, green: 243/255, blue: 244/255, opacity: 1))
+            .background(.clear)
             .cornerRadius(20)
+        }.background {
+            Image("paper_background").resizable()
+                .ignoresSafeArea()
+        }
+    }
+    
+    var line: some View {
+        VStack {
+            Divider()
+                .frame(height: 4)
+                .overlay(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.2))
+                .padding([.leading, .trailing], -4)
         }
     }
 }
