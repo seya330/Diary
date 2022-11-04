@@ -21,7 +21,8 @@ struct CalendarView: View {
                         } label: {
                             Image(systemName: "plus.circle")
                                 .font(.system(size: 50))
-                                .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.7))
+                                .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.5))
+                                .shadow(color: .gray, radius: 1, x: 2, y: 2)
                         }
                     }
                 }
