@@ -6,25 +6,20 @@ struct FSCalendarView: UIViewControllerRepresentable {
     
     @ObservedObject var diaryFetcher: DiaryFetcher = DiaryFetcher()
     
-    var controller: MyCalendarViewController
+    @Binding var isShowDetailView: Bool
     
-    var navi: UINavigationController
+    @Binding var seq: Int64
     
-    init() {
-        controller = MyCalendarViewController()
-        navi = UINavigationController(rootViewController: controller)
-        navi.navigationBar.tintColor = UIColor(red: 242/255, green: 163/255, blue: 27/255, alpha: 0.6)
-        navi.navigationBar.topItem?.title = ""
-    }
+    var controller: MyCalendarViewController = MyCalendarViewController()
     
-    func makeUIViewController(context: Context) -> UINavigationController {
+    func makeUIViewController(context: Context) -> MyCalendarViewController {
         controller.calendar.delegate = context.coordinator
         controller.calendar.dataSource = context.coordinator
         loadData()
-        return navi
+        return controller
     }
     
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+    func updateUIViewController(_ uiViewController: MyCalendarViewController, context: Context) {
         controller.calendar.reloadData()
     }
     
@@ -46,12 +41,6 @@ struct FSCalendarView: UIViewControllerRepresentable {
             }
             controller.reload()
         }
-    }
-
-    private func showDiaryDetail(seq: Int64) {
-        let hostingConroller = UIHostingController(rootView: DiaryDetilView(diarySeq: seq))
-        hostingConroller.view.backgroundColor = .clear
-        navi.pushViewController(hostingConroller, animated: false)
     }
 }
 
@@ -104,7 +93,8 @@ extension FSCalendarView {
             //TODO 다시한번 다이어리 작성 되어 있는지 확인 call
             
             if let seq = parent.controller.registeredSeq[date.getDateString()] {
-                parent.showDiaryDetail(seq: seq)
+                parent.seq = seq
+                parent.isShowDetailView = true
             }
         }
         

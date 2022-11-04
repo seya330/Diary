@@ -4,7 +4,8 @@ import SwiftUI
 struct DiaryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(DiaryFetcher())
+            ContentView()
+                .environmentObject(DiaryFetcher())
                 .environmentObject(observed())
         }
     }

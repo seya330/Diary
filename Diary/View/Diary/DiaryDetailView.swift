@@ -21,6 +21,8 @@ struct DiaryDetilView: View {
                             isLoaded = true
                         }
                     }
+                Image("paper_background").resizable()
+                    .ignoresSafeArea()
             }
         } else {
             DiaryDetailViewImpl(diary: diaryFetcher.recentDiary)

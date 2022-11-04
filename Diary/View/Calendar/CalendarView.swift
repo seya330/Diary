@@ -5,31 +5,34 @@ struct CalendarView: View {
     
     @State var isAddViewShow: Bool = false
     
+    @State var isShowDetailView: Bool = false
+    
+    @State var selectedSeq: Int64 = 1
+    
     var body: some View {
         NavigationView {
-            VStack {
-                FSCalendarView()
-                HStack {
-                    Spacer()
-                    Button {
-                        isAddViewShow = true
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .font(.system(size: 50))
-                            .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.7))
+                VStack {
+                    NavigationLink(destination: DiaryDetilView(diarySeq: selectedSeq), isActive: $isShowDetailView) {EmptyView()}
+                    FSCalendarView(isShowDetailView: $isShowDetailView, seq: $selectedSeq)
+                    HStack {
+                        Spacer()
+                        Button {
+                            isAddViewShow = true
+                        } label: {
+                            Image(systemName: "plus.circle")
+                                .font(.system(size: 50))
+                                .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.7))
+                        }
                     }
-
-                    
                 }
-            }
-            .padding()
-            .background {
-                Image("paper_background").resizable()
-                    .ignoresSafeArea()
-                    .fullScreenCover(isPresented: $isAddViewShow) {
-                        AddDiaryView(isAddViewShow: $isAddViewShow)
-                    }
-            }
+                .padding()
+                .background {
+                    Image("paper_background").resizable()
+                        .ignoresSafeArea()
+                        .fullScreenCover(isPresented: $isAddViewShow) {
+                            AddDiaryView(isAddViewShow: $isAddViewShow)
+                        }
+                }
         }
     }
 }
