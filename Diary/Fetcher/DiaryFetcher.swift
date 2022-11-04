@@ -9,7 +9,7 @@ class DiaryFetcher: ObservableObject {
     
     @Published var diaries: [DiaryList] = []
     
-    @Published var registeredDates: [Date] = []
+    @Published var registeredSeq: [Date: Int64] = [:]
     
     init() {
         let dateFormatter = DateFormatter()
@@ -72,10 +72,15 @@ func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escapi
     
         AF.request(DiaryConfig.baseUrl + "/api/diaries/registered-date", method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: [Date].self, decoder: decoder) { response in
+            .responseDecodable(of: [String: Int64].self) { response in
                 switch(response.result) {
-                case .success(let dates):
-                    self.registeredDates = dates
+                case .success(let body):
+                    body.forEach { (key: String, value: Int64) in
+                        guard let date = DateFactory.dateFormatter.date(from: key) else {
+                            fatalError("date converting fail")
+                        }
+                        self.registeredSeq[date] = value
+                    }
                     completion()
                 case .failure(let error):
                     print(error.localizedDescription)

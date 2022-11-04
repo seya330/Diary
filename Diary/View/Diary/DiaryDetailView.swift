@@ -16,7 +16,6 @@ struct DiaryDetilView: View {
         if !isLoaded {
             Text("Loading..")
                 .task {
-                    print(isLoaded)
                     diaryFetcher.getDiary(seq: diarySeq) {
                         isLoaded = true
                     }

@@ -14,7 +14,7 @@ struct AddDiaryView: View {
             VStack(spacing: 30) {
                 ZStack {
                     Text(Date().getDateDotString())
-                        .font(.custom("Cafe24SsurroundAir", size: 26))
+                        .font(.custom("ACCchildrenheart", size: 26))
                         .foregroundColor(.black.opacity(0.5))
                     HStack {
                         Spacer()
