@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>ACC어린이마음고운체.ttf</string>
 		<string>Cafe24SsurroundAir.ttf</string>
 	</array>
 	<key>diaryServerUrl</key>

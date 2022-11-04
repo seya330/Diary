@@ -5,7 +5,7 @@ struct MultiTextField: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
-        view.font = UIFont(name: "Cafe24SsurroundAir", size: 17)
+        view.font = UIFont(name: "ACCchildrenheart", size: 17)
         view.text = "글을 입력해 주세요."
         view.textColor = UIColor.black.withAlphaComponent(0.35)
         view.backgroundColor = .clear
