@@ -45,6 +45,11 @@ struct FSCalendarView: UIViewControllerRepresentable {
             controller.reload()
         }
     }
+
+    private func showDiaryDetail(seq: Int64) {
+        let hostingConroller = UIHostingController(rootView: DiaryDetilView(diarySeq: seq))
+        navi.pushViewController(hostingConroller, animated: true)
+    }
 }
 
 class MyCalendarViewController: UIViewController{
@@ -67,7 +72,6 @@ class MyCalendarViewController: UIViewController{
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.headerHeight = calendar.appearance.headerTitleFont.lineHeight*4
         calendar.appearance.weekdayFont = UIFont(name: "ACCchildrenheart", size: 20)
-        calendar.appearance.titleColors
         calendar.appearance.titleFont = UIFont(name: "ACCchildrenheart", size: 18)
         calendar.scrollEnabled = true
         calendar.calendarWeekdayView.weekdayLabels[0].textColor = UIColor(red: 230/255, green: 84/255, blue: 73/255, alpha: 1)
@@ -97,17 +101,12 @@ extension FSCalendarView {
             //TODO 다시한번 다이어리 작성 되어 있는지 확인 call
             
             if let seq = parent.controller.registeredSeq[date.getDateString()] {
-                showDiaryDetail(seq: seq)
+                parent.showDiaryDetail(seq: seq)
             }
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
             return parent.controller.registeredSeq[date.getDateString()] != nil ? 1 : 0
-        }
-        
-        private func showDiaryDetail(seq: Int64) {
-            let hostingConroller = UIHostingController(rootView: DiaryDetilView(diarySeq: seq))
-            parent.navi.pushViewController(hostingConroller, animated: true)
         }
     }
 }
