@@ -25,8 +25,9 @@ struct CalendarView: View {
         .background {
             Image("paper_background").resizable()
                 .ignoresSafeArea()
-        .fullScreenCover(isPresented: $isAddViewShow) {
-            AddDiaryView(isAddViewShow: $isAddViewShow)
+                .fullScreenCover(isPresented: $isAddViewShow) {
+                    AddDiaryView(isAddViewShow: $isAddViewShow)
+                }
         }
     }
 }
