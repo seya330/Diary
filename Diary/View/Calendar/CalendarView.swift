@@ -11,30 +11,32 @@ struct CalendarView: View {
     
     var body: some View {
         NavigationView {
-                VStack {
-                    NavigationLink(destination: DiaryDetilView(diarySeq: selectedSeq), isActive: $isShowDetailView) {EmptyView()}
-                    FSCalendarView(isShowDetailView: $isShowDetailView, seq: $selectedSeq)
-                    HStack {
-                        Spacer()
-                        Button {
-                            isAddViewShow = true
-                        } label: {
-                            Image(systemName: "plus.circle")
-                                .font(.system(size: 50))
-                                .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.5))
-                                .shadow(color: .gray, radius: 1, x: 2, y: 2)
-                        }
+            VStack {
+                NavigationLink(destination: DiaryDetilView(diarySeq: selectedSeq), isActive: $isShowDetailView) {EmptyView()}
+                FSCalendarView(isShowDetailView: $isShowDetailView, seq: $selectedSeq)
+                HStack {
+                    Spacer()
+                    Button {
+                        isAddViewShow = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .font(.system(size: 50))
+                            .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.5))
+                            .shadow(color: .gray, radius: 1, x: 2, y: 2)
                     }
                 }
-                .padding()
-                .background {
-                    Image("paper_background").resizable()
-                        .ignoresSafeArea()
-                        .fullScreenCover(isPresented: $isAddViewShow) {
-                            AddDiaryView(isAddViewShow: $isAddViewShow)
-                        }
-                }
+            }
+            .navigationTitle("")
+            .padding()
+            .background {
+                Image("paper_background").resizable()
+                    .ignoresSafeArea()
+                    .fullScreenCover(isPresented: $isAddViewShow) {
+                        AddDiaryView(isAddViewShow: $isAddViewShow)
+                    }
+            }
         }
+        .tint(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 1.0))
     }
 }
 
