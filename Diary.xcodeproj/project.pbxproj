@@ -20,15 +20,7 @@
 		F3A62784289923A400B707EF /* DiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A62783289923A400B707EF /* DiaryTests.swift */; };
 		F3A6278E289923A400B707EF /* DiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6278D289923A400B707EF /* DiaryUITests.swift */; };
 		F3A62790289923A400B707EF /* DiaryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6278F289923A400B707EF /* DiaryUITestsLaunchTests.swift */; };
-		F3A627AD2899240200B707EF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6279D2899240200B707EF /* Day.swift */; };
-		F3A627AE2899240200B707EF /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6279E2899240200B707EF /* MonthView.swift */; };
-		F3A627AF2899240200B707EF /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6279F2899240200B707EF /* GridStack.swift */; };
-		F3A627B02899240200B707EF /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A02899240200B707EF /* Month.swift */; };
-		F3A627B12899240200B707EF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A12899240200B707EF /* Helper.swift */; };
-		F3A627B22899240200B707EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A22899240200B707EF /* Colors.swift */; };
-		F3A627B32899240200B707EF /* DayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A32899240200B707EF /* DayCellView.swift */; };
 		F3A627B42899240200B707EF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A42899240200B707EF /* CalendarView.swift */; };
-		F3A627B52899240200B707EF /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A52899240200B707EF /* WeekdaysView.swift */; };
 		F3A627B62899240200B707EF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A72899240200B707EF /* Page.swift */; };
 		F3A627B72899240200B707EF /* DiaryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627A92899240200B707EF /* DiaryFetcher.swift */; };
 		F3A627B82899240200B707EF /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627AA2899240200B707EF /* Diary.swift */; };
@@ -37,7 +29,6 @@
 		F3A627BE2899243600B707EF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627BB2899243600B707EF /* Common.swift */; };
 		F3A627C02899243600B707EF /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A627BD2899243600B707EF /* DiaryListView.swift */; };
 		F3A627C32899247000B707EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F3A627C22899247000B707EF /* Alamofire */; };
-		F3F24F8D28A24E20008B1D88 /* Month2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F24F8C28A24E20008B1D88 /* Month2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,15 +67,7 @@
 		F3A62789289923A400B707EF /* DiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A6278D289923A400B707EF /* DiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryUITests.swift; sourceTree = "<group>"; };
 		F3A6278F289923A400B707EF /* DiaryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F3A6279D2899240200B707EF /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		F3A6279E2899240200B707EF /* MonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
-		F3A6279F2899240200B707EF /* GridStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
-		F3A627A02899240200B707EF /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
-		F3A627A12899240200B707EF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		F3A627A22899240200B707EF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		F3A627A32899240200B707EF /* DayCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCellView.swift; sourceTree = "<group>"; };
 		F3A627A42899240200B707EF /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		F3A627A52899240200B707EF /* WeekdaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
 		F3A627A72899240200B707EF /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		F3A627A92899240200B707EF /* DiaryFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryFetcher.swift; sourceTree = "<group>"; };
 		F3A627AA2899240200B707EF /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
@@ -92,7 +75,6 @@
 		F3A627AC2899240200B707EF /* DiaryDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryDetailView.swift; sourceTree = "<group>"; };
 		F3A627BB2899243600B707EF /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		F3A627BD2899243600B707EF /* DiaryListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryListView.swift; sourceTree = "<group>"; };
-		F3F24F8C28A24E20008B1D88 /* Month2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +188,6 @@
 				F34EC0D928BA0D45008080A9 /* Font */,
 				F3F24F89289E461E008B1D88 /* Fetcher */,
 				F3F24F88289E4604008B1D88 /* Domain */,
-				F3A6279C2899240200B707EF /* Calendar */,
 				F3A627A62899240200B707EF /* Common */,
 				F3A62772289923A200B707EF /* DiaryApp.swift */,
 				F3A62774289923A200B707EF /* ContentView.swift */,
@@ -240,22 +221,6 @@
 				F3A6278F289923A400B707EF /* DiaryUITestsLaunchTests.swift */,
 			);
 			path = DiaryUITests;
-			sourceTree = "<group>";
-		};
-		F3A6279C2899240200B707EF /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				F3A6279D2899240200B707EF /* Day.swift */,
-				F3A6279E2899240200B707EF /* MonthView.swift */,
-				F3A6279F2899240200B707EF /* GridStack.swift */,
-				F3A627A02899240200B707EF /* Month.swift */,
-				F3A627A12899240200B707EF /* Helper.swift */,
-				F3A627A22899240200B707EF /* Colors.swift */,
-				F3A627A32899240200B707EF /* DayCellView.swift */,
-				F3A627A52899240200B707EF /* WeekdaysView.swift */,
-				F3F24F8C28A24E20008B1D88 /* Month2.swift */,
-			);
-			path = Calendar;
 			sourceTree = "<group>";
 		};
 		F3A627A62899240200B707EF /* Common */ = {
@@ -434,25 +399,16 @@
 				F3A627BE2899243600B707EF /* Common.swift in Sources */,
 				6E10F33E290FB67C00D43C94 /* MultiTextField.swift in Sources */,
 				F3A627B42899240200B707EF /* CalendarView.swift in Sources */,
-				F3A627AF2899240200B707EF /* GridStack.swift in Sources */,
 				F3A627B62899240200B707EF /* Page.swift in Sources */,
 				6E865BF52912333800849E88 /* DiaryConfig.swift in Sources */,
-				F3A627B22899240200B707EF /* Colors.swift in Sources */,
 				F3A627B92899240200B707EF /* AddDiaryView.swift in Sources */,
 				F3A627B72899240200B707EF /* DiaryFetcher.swift in Sources */,
-				F3A627B12899240200B707EF /* Helper.swift in Sources */,
 				F3A627BA2899240200B707EF /* DiaryDetailView.swift in Sources */,
-				F3A627B52899240200B707EF /* WeekdaysView.swift in Sources */,
 				F3A627B82899240200B707EF /* Diary.swift in Sources */,
 				F3651D922909492B007C8CDB /* FSCalendarView.swift in Sources */,
 				F3A62775289923A200B707EF /* ContentView.swift in Sources */,
-				F3A627B02899240200B707EF /* Month.swift in Sources */,
 				F3A62773289923A200B707EF /* DiaryApp.swift in Sources */,
-				F3A627AD2899240200B707EF /* Day.swift in Sources */,
-				F3A627AE2899240200B707EF /* MonthView.swift in Sources */,
-				F3A627B32899240200B707EF /* DayCellView.swift in Sources */,
 				F3A627C02899243600B707EF /* DiaryListView.swift in Sources */,
-				F3F24F8D28A24E20008B1D88 /* Month2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

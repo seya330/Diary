@@ -30,11 +30,6 @@ struct DiaryDetilView: View {
     }
 }
 
-
-func dateToString(date: Date) -> String {
-    date.dateToString(format: "yyyy-MM-dd")
-}
-
 struct DiaryDetailView_Previews: PreviewProvider {
     static var previews: some View {
         DiaryDetilView(diarySeq: 1).environmentObject(DiaryFetcher())
@@ -53,7 +48,7 @@ struct DiaryDetailViewImpl: View {
                 line
                 line
                 line
-                Text(dateToString(date: diary.registeredAt))
+                Text(diary.registeredAt.getDateString())
                     .font(Font.custom("ACCchildrenheart", size: 22))
                     .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 1))
                     .frame(width: 120)
