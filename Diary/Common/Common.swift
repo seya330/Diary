@@ -57,6 +57,12 @@ extension Date {
 
 class DateFactory {
     
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss"
+        return dateFormatter
+    }()
+    
     static func of(year: Int, month: Int, day: Int, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
