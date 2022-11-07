@@ -18,6 +18,10 @@ struct ContentView: View {
                     Image(systemName: "calendar")
                         .foregroundColor(Color(red: 255/255, green: 255/255, blue: 255/255))
                 }
+            LoginView()
+                .tabItem {
+                    Image(systemName: "pencil")
+                }
         }
     }
 }

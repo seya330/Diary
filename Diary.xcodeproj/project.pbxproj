@@ -10,6 +10,10 @@
 		6E10F33E290FB67C00D43C94 /* MultiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E10F33D290FB67C00D43C94 /* MultiTextField.swift */; };
 		6E865BF52912333800849E88 /* DiaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E865BF42912333800849E88 /* DiaryConfig.swift */; };
 		F34EC0DE28BA13B0008080A9 /* Cafe24SsurroundAir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */; };
+		F35966032918C9B0004FB659 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F35966022918C9B0004FB659 /* GoogleSignIn */; };
+		F35966052918C9B0004FB659 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F35966042918C9B0004FB659 /* GoogleSignInSwift */; };
+		F359660A2918CCF5004FB659 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35966092918CCF5004FB659 /* LoginView.swift */; };
+		F359660D29192C67004FB659 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F359660C29192C67004FB659 /* User.swift */; };
 		F3651D8E290948E1007C8CDB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F3651D8D290948E1007C8CDB /* FSCalendar */; };
 		F3651D922909492B007C8CDB /* FSCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3651D912909492B007C8CDB /* FSCalendarView.swift */; };
 		F3651D942912AB5D007C8CDB /* ACC어린이마음고운체.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3651D932912AB5D007C8CDB /* ACC어린이마음고운체.ttf */; };
@@ -55,6 +59,8 @@
 		6E865BF42912333800849E88 /* DiaryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryConfig.swift; sourceTree = "<group>"; };
 		F34EC0DC28BA0F04008080A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24SsurroundAir.ttf; sourceTree = "<group>"; };
+		F35966092918CCF5004FB659 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F359660C29192C67004FB659 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3651D912909492B007C8CDB /* FSCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCalendarView.swift; sourceTree = "<group>"; };
 		F3651D932912AB5D007C8CDB /* ACC어린이마음고운체.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ACC어린이마음고운체.ttf"; sourceTree = "<group>"; };
 		F3A6276F289923A200B707EF /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +90,8 @@
 			files = (
 				F3A627C32899247000B707EF /* Alamofire in Frameworks */,
 				F3651D8E290948E1007C8CDB /* FSCalendar in Frameworks */,
+				F35966032918C9B0004FB659 /* GoogleSignIn in Frameworks */,
+				F35966052918C9B0004FB659 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,9 +158,27 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		F35966062918CCD7004FB659 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F35966092918CCF5004FB659 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F359660B29192C4B004FB659 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3A627AA2899240200B707EF /* Diary.swift */,
+				F359660C29192C67004FB659 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F3651D8F29094905007C8CDB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F35966062918CCD7004FB659 /* Login */,
 				6E9834162912713000E45691 /* Calendar */,
 				6E9834152912711600E45691 /* Diary */,
 			);
@@ -182,6 +208,7 @@
 		F3A62771289923A200B707EF /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				F359660B29192C4B004FB659 /* Model */,
 				6E865BF32912332500849E88 /* Config */,
 				F3651D8F29094905007C8CDB /* View */,
 				F34EC0E128BA15F5008080A9 /* Image */,
@@ -235,7 +262,6 @@
 		F3A627A82899240200B707EF /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				F3A627AA2899240200B707EF /* Diary.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -275,6 +301,8 @@
 			packageProductDependencies = (
 				F3A627C22899247000B707EF /* Alamofire */,
 				F3651D8D290948E1007C8CDB /* FSCalendar */,
+				F35966022918C9B0004FB659 /* GoogleSignIn */,
+				F35966042918C9B0004FB659 /* GoogleSignInSwift */,
 			);
 			productName = Diary;
 			productReference = F3A6276F289923A200B707EF /* Diary.app */;
@@ -351,6 +379,7 @@
 			packageReferences = (
 				F3A627C12899247000B707EF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F3651D8C290948E1007C8CDB /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				F35966012918C9B0004FB659 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = F3A62770289923A200B707EF /* Products */;
 			projectDirPath = "";
@@ -404,6 +433,8 @@
 				F3A627B92899240200B707EF /* AddDiaryView.swift in Sources */,
 				F3A627B72899240200B707EF /* DiaryFetcher.swift in Sources */,
 				F3A627BA2899240200B707EF /* DiaryDetailView.swift in Sources */,
+				F359660D29192C67004FB659 /* User.swift in Sources */,
+				F359660A2918CCF5004FB659 /* LoginView.swift in Sources */,
 				F3A627B82899240200B707EF /* Diary.swift in Sources */,
 				F3651D922909492B007C8CDB /* FSCalendarView.swift in Sources */,
 				F3A62775289923A200B707EF /* ContentView.swift in Sources */,
@@ -496,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -551,7 +582,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -570,6 +601,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Diary/Preview Content\"";
+				DEVELOPMENT_TEAM = GY8RZN6K35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diary/Info.plist;
@@ -601,6 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Diary/Preview Content\"";
+				DEVELOPMENT_TEAM = GY8RZN6K35;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Diary/Info.plist;
@@ -741,6 +774,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F35966012918C9B0004FB659 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		F3651D8C290948E1007C8CDB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -760,6 +801,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F35966022918C9B0004FB659 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F35966012918C9B0004FB659 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		F35966042918C9B0004FB659 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F35966012918C9B0004FB659 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		F3651D8D290948E1007C8CDB /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F3651D8C290948E1007C8CDB /* XCRemoteSwiftPackageReference "FSCalendar" */;
