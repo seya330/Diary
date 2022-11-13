@@ -1,5 +1,6 @@
 import SwiftUI
 
+let authManager = AuthManager()
 @main
 struct DiaryApp: App {
     
@@ -18,6 +19,7 @@ struct DiaryApp: App {
             ContentView()
                 .environmentObject(DiaryFetcher())
                 .environmentObject(observed())
+                .environmentObject(authManager)
         }
     }
 }

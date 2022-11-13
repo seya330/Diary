@@ -1,5 +1,5 @@
 import Foundation
-import Alamofire
+import SwiftUI
 
 extension Date {
     
@@ -7,7 +7,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         return dateFormatter.string(from: self)
-}
+    }
     
     func getDateString() -> String {
         let dateFormatter = DateFormatter()
@@ -59,7 +59,7 @@ class DateFactory {
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.S"
         return dateFormatter
     }()
     
@@ -77,3 +77,23 @@ class DateFactory {
         return dateFormatter.date(from: str) ?? Date()
     }
 }
+
+struct FullBackground: View {
+    
+    let imageName: String
+    
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(geometry.size, contentMode: .fill)
+                    .ignoresSafeArea()
+            }
+        }
+    }
+    
+}
+
+let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController

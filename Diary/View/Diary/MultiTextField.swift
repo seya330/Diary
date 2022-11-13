@@ -3,6 +3,8 @@ struct MultiTextField: UIViewRepresentable {
     
     @EnvironmentObject var obj: observed
     
+    @Binding var text: String
+    
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
         view.font = UIFont(name: "ACCchildrenheart", size: 17)
@@ -39,6 +41,7 @@ struct MultiTextField: UIViewRepresentable {
         
         func textViewDidChange(_ textView: UITextView) {
             self.parent.obj.size = textView.contentSize.height
+            parent.text = textView.text
         }
     }
 }

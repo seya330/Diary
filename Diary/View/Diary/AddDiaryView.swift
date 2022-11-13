@@ -28,8 +28,7 @@ struct AddDiaryView: View {
                     }
                 }
                 ScrollView {
-                    MultiTextField().frame(height: self.obj.size).padding(10)
-                        
+                    MultiTextField(text: $inputText).frame(height: self.obj.size).padding(10)
                 }
                 //footer
                 HStack {

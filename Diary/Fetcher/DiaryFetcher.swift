@@ -51,7 +51,7 @@ class DiaryFetcher: ObservableObject {
     }
 
     func getDiary(seq: Int64, completion: @escaping () -> Void) {
-        AF.request(DiaryConfig.baseUrl + "/api/diaries/\(seq)", method: .get,encoding: URLEncoding.default)
+        AF.request(DiaryConfig.baseUrl + "/api/diaries/\(seq)", method: .get,encoding: URLEncoding.default, headers: authHeader())
             .validate(statusCode: 200..<300)
             .responseDecodable(of: DiaryDecodable.self, decoder: decoder) { response in
                 switch response.result {
@@ -70,7 +70,7 @@ func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escapi
             "endDate": endDate.getDateString()
         ]
     
-        AF.request(DiaryConfig.baseUrl + "/api/diaries/registered-date", method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(DiaryConfig.baseUrl + "/api/diaries/registered-date", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: authHeader())
             .validate(statusCode: 200..<300)
             .responseDecodable(of: [String: Int64].self) { response in
                 switch(response.result) {
@@ -99,5 +99,14 @@ func getDiaryRegisteredDates(startDate: Date, endDate: Date, completion: @escapi
                     print("success")
                 }
             }
+    }
+    
+    private func authHeader() -> HTTPHeaders{
+        guard let loginUser = authManager.loginUser else {
+            return []
+        }
+        return [
+            .authorization(bearerToken: loginUser.token)
+        ]
     }
 }
