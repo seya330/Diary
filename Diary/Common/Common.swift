@@ -1,8 +1,5 @@
 import Foundation
-import Alamofire
 import SwiftUI
-import GoogleSignIn
-import GoogleSignInSwift
 
 extension Date {
     
@@ -62,7 +59,7 @@ class DateFactory {
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.S"
         return dateFormatter
     }()
     
@@ -97,42 +94,6 @@ struct FullBackground: View {
         }
     }
     
-}
-
-class AuthManager {
-    
-    public static let googleConfig = GIDConfiguration(clientID: "151749810455-43v7cd4lnk8j09ftf98j2eu0bt5f77oa.apps.googleusercontent.com")
-    
-    static func googleLogin() {
-        GIDSignIn.sharedInstance.signIn(with: AuthManager.googleConfig, presenting: presentingViewController!) {
-            user, error in
-            
-            guard error == nil else {return}
-            guard let user else {return}
-            
-            let email = user.profile?.email
-            let fullName = user.profile?.name
-            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
-            user.authentication.do { auth, error in
-                guard error == nil else {return}
-                guard let auth else {return}
-                guard let token = auth.idToken else {return}
-                
-                AF.request(DiaryConfig.baseUrl + "/auth/google", method: .post, parameters: [
-                    "token": token
-                ], encoding: JSONEncoding.default)
-                .validate(statusCode: 200..<300)
-                .responseData { response in
-                    switch response.result {
-                    case let .failure(error):
-                        print(error)
-                    case .success(_):
-                        print("success")
-                    }
-                }
-            }
-        }
-    }
 }
 
 let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController

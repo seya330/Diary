@@ -9,25 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @EnvironmentObject var authManager: AuthManager
+    
     @State var date = Date()
     
     var body: some View {
-        TabView {
-            CalendarView()
-                .tabItem {
-                    Image(systemName: "calendar")
-                        .foregroundColor(Color(red: 255/255, green: 255/255, blue: 255/255))
-                }
+        if authManager.isLogined {
+            TabView {
+                CalendarView()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                            .foregroundColor(Color(red: 255/255, green: 255/255, blue: 255/255))
+                    }
+            }
+        } else {
             LoginView()
-                .tabItem {
-                    Image(systemName: "pencil")
-                }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(AuthManager())
     }
 }

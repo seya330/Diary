@@ -145,6 +145,11 @@ class DiaryTests: XCTestCase {
     
     func testDateComponents() throws {
     }
+    
+    func testAsdf() {
+        let key = "2022-11-08T17:22:50.416"
+        let date = DateFactory.dateFormatter.date(from: key)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

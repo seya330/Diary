@@ -1,19 +1,16 @@
 import Foundation
 
-class User: ObservableObject {
+class User: Decodable {
     
-    init(email: String, fullName: String, givenName: String, familyName: String) {
+    init(token: String, email: String, name: String) {
+        self.token = token
         self.email = email
-        self.fullName = fullName
-        self.givenName = givenName
-        self.familyName = familyName
+        self.name = name
     }
+    
+    var token: String
     
     var email: String
     
-    var fullName: String
-    
-    var givenName: String
-    
-    var familyName: String
+    var name: String?
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E10F33E290FB67C00D43C94 /* MultiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E10F33D290FB67C00D43C94 /* MultiTextField.swift */; };
+		6E3B35092921232200D0DB62 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B35082921232200D0DB62 /* AuthManager.swift */; };
 		6E865BF52912333800849E88 /* DiaryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E865BF42912333800849E88 /* DiaryConfig.swift */; };
 		F34EC0DE28BA13B0008080A9 /* Cafe24SsurroundAir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F34EC0DD28BA13B0008080A9 /* Cafe24SsurroundAir.ttf */; };
 		F35966032918C9B0004FB659 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F35966022918C9B0004FB659 /* GoogleSignIn */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		6E10F33D290FB67C00D43C94 /* MultiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiTextField.swift; sourceTree = "<group>"; };
+		6E3B35082921232200D0DB62 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		6E865BF1291212F100849E88 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		6E865BF22912133300849E88 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		6E865BF42912333800849E88 /* DiaryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryConfig.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			children = (
 				F3A627BB2899243600B707EF /* Common.swift */,
 				F3A627A72899240200B707EF /* Page.swift */,
+				6E3B35082921232200D0DB62 /* AuthManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				F3A627B72899240200B707EF /* DiaryFetcher.swift in Sources */,
 				F3A627BA2899240200B707EF /* DiaryDetailView.swift in Sources */,
 				F359660D29192C67004FB659 /* User.swift in Sources */,
+				6E3B35092921232200D0DB62 /* AuthManager.swift in Sources */,
 				F359660A2918CCF5004FB659 /* LoginView.swift in Sources */,
 				F3A627B82899240200B707EF /* Diary.swift in Sources */,
 				F3651D922909492B007C8CDB /* FSCalendarView.swift in Sources */,
@@ -527,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -582,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -611,6 +615,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -643,6 +648,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

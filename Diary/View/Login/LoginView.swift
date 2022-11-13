@@ -3,6 +3,9 @@ import GoogleSignIn
 import GoogleSignInSwift
 
 struct LoginView: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
         VStack {
             //            FullBackground(imageName: "paper_background")
@@ -15,7 +18,7 @@ struct LoginView: View {
                     VStack {
                         Image(systemName: "pencil.circle").font(.largeTitle)
                         GoogleSignInButton(style: .wide) {
-                            AuthManager.googleLogin()
+                            authManager.googleLogin()
                         }
                         .padding([.leading, .trailing])
                         Button {
@@ -43,12 +46,6 @@ struct LoginView: View {
                 let familyName = user.profile?.familyName
                 
                 let profilePicUrl = user.profile?.imageURL(withDimension: 320)
-                
-                print(email)
-                print(fullName)
-                print(givenName)
-                print(familyName)
-                print(profilePicUrl)
             }
         }
     }
