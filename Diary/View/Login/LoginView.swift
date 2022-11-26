@@ -8,7 +8,6 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            //            FullBackground(imageName: "paper_background")
             GeometryReader { geometry in
                 ZStack {
                     Image("paper_background")
@@ -16,17 +15,13 @@ struct LoginView: View {
                         .aspectRatio(geometry.size, contentMode: .fill)
                         .ignoresSafeArea()
                     VStack {
-                        Image(systemName: "pencil.circle").font(.largeTitle)
-                        GoogleSignInButton(style: .wide) {
+                        Text("나의 일기장")
+                            .font(Font.custom("ACCchildrenheart", size: 40))
+                            .foregroundColor(.gray)
+                        GoogleSignInButton(style: .icon) {
                             authManager.googleLogin()
                         }
                         .padding([.leading, .trailing])
-                        Button {
-                            GIDSignIn.sharedInstance.signOut()
-                        } label: {
-                            Image(systemName: "pencil")
-                        }
-
                     }
                 }
             }
@@ -39,13 +34,6 @@ struct LoginView: View {
             GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
                 guard error == nil else {return}
                 guard let user else {return}
-                
-                let email = user.profile?.email
-                let fullName = user.profile?.name
-                let givenName = user.profile?.givenName
-                let familyName = user.profile?.familyName
-                
-                let profilePicUrl = user.profile?.imageURL(withDimension: 320)
             }
         }
     }
@@ -53,6 +41,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(AuthManager())
     }
 }

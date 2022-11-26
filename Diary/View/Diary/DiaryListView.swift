@@ -1,76 +1,64 @@
+//
+//  DiaryListView2.swift
+//  Diary
+//
+//  Created by 조세진 on 2022/11/22.
+//
+
 import SwiftUI
 
 struct DiaryListView: View {
-    
-    @State private var isAddViewShow: Bool = false
-    
-    @State private var isLoadedContents: Bool = false
-    
-    @EnvironmentObject var diaryFetcher: DiaryFetcher
-    
     var body: some View {
-        VStack(spacing: 20) {
-            if !isLoadedContents || diaryFetcher.diaries.isEmpty {
-                Text("contents is empty")
-            } else {
-                NavigationView {
-                    ZStack {
-                        List {
-                            ForEach(diaryFetcher.diaries) { content in
-                                NavigationLink(destination: DiaryDetilView(diarySeq: content.seq)) {
-                                    HStack {
-                                        Text(content.content)
-                                        Text(content.registeredAt.myFormat())
-                                    }
-                                }
-                            }
-                            .onDelete(perform: deleteDiary)
-                        }
-                    }
-                }.background(content: {
-                    Image("paper_background").resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .edgesIgnoringSafeArea(.all)
-                })
+        VStack {
+            ScrollView {
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
+                DiaryListViewItem()
             }
-            Button(action: {isAddViewShow = true}) {
-                Text("Add")
-            }
+        }.background {
+            Image("paper_background").resizable()
+                .ignoresSafeArea()
         }
-        .fullScreenCover(isPresented: $isAddViewShow) {
-            AddDiaryView(isAddViewShow: $isAddViewShow)
-        }.task {
-            diaryFetcher.getDiaries(parameters: ["size":"1000"]) {
-                isLoadedContents = true
-            }
-        }
-    }
-    
-    func deleteDiary (at offsets: IndexSet) {
-        
     }
 }
 
 struct DiaryListView_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListView().environmentObject(DiaryFetcher())
+        DiaryListView()
     }
 }
 
-extension Date {
-    public var year: Int {
-            return Calendar.current.component(.year, from: self)
+struct DiaryListViewItem: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Line()
+                Line()
+                Line()
+                Line()
+                Line()
+                Text("2022-11-22")
+                    .font(Font.custom("ACCchildrenheart", size: 22))
+                    .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 1))
+                    .frame(width: 120)
+                Line()
+            }
+            Section {
+                    Text("asdadsfasdfzxcvzxcvzxcv]nasdfasdf\nadsfasdfcxvzzzz")
+                        .font(Font.custom("ACCchildrenheart", size: 22))
+                        .foregroundColor(.black.opacity(0.7))
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(.clear)
         }
-        
-        public var month: Int {
-             return Calendar.current.component(.month, from: self)
-        }
-        
-        public var day: Int {
-             return Calendar.current.component(.day, from: self)
-        }
-    
-    public func myFormat() -> String {
-        return "\(year)년 \(month)월 \(day)일"
+        .padding([.top], 20)
     }
 }

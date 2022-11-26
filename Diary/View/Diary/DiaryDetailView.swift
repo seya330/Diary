@@ -43,16 +43,16 @@ struct DiaryDetailViewImpl: View {
     var body: some View {
         VStack {
             HStack {
-                line
-                line
-                line
-                line
-                line
+                Line()
+                Line()
+                Line()
+                Line()
+                Line()
                 Text(diary.registeredAt.getDateString())
                     .font(Font.custom("ACCchildrenheart", size: 22))
                     .foregroundColor(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 1))
                     .frame(width: 120)
-                line
+                Line()
             }
             Section {
                 ScrollView {
@@ -68,15 +68,6 @@ struct DiaryDetailViewImpl: View {
         }.background {
             Image("paper_background").resizable()
                 .ignoresSafeArea()
-        }
-    }
-    
-    var line: some View {
-        VStack {
-            Divider()
-                .frame(height: 4)
-                .overlay(Color(red: 242/255, green: 163/255, blue: 27/255, opacity: 0.2))
-                .padding([.leading, .trailing], -4)
         }
     }
 }
