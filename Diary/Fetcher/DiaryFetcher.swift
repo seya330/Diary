@@ -21,7 +21,7 @@ class DiaryFetcher: ObservableObject {
     func postDiary(content: String, completion: @escaping () -> Void = {}) {
         AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .post, parameters: [
             "content": content
-        ], encoding: JSONEncoding.default)
+        ], encoding: JSONEncoding.default, headers: authHeader())
             .validate(statusCode: 200..<300)
             .responseData { response in
                 switch response.result {
