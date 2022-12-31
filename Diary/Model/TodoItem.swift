@@ -7,15 +7,15 @@
 
 import Foundation
 
-class TodoItem: Decodable, ObservableObject {
+class TodoItem: Codable, ObservableObject {
     
     var seq: Int64
     
     var contents: String
     
-    var status: TodoItemStatus
+    @Published var isCompleted: Bool
     
-    var isStarred: Bool
+    @Published var isStarred: Bool
 
     var startedAt: Date
 
@@ -23,10 +23,10 @@ class TodoItem: Decodable, ObservableObject {
 
     var numberOfOrder: Int
     
-    init(seq: Int64, contents: String, status: TodoItemStatus, isStarred: Bool, startedAt: Date, endedAt: Date, numberOfOrder: Int) {
+    init(seq: Int64, contents: String, isCompleted: Bool, isStarred: Bool, startedAt: Date, endedAt: Date, numberOfOrder: Int) {
         self.seq = seq
         self.contents = contents
-        self.status = status
+        self.isCompleted = isCompleted
         self.isStarred = isStarred
         self.startedAt = startedAt
         self.endedAt = endedAt
@@ -34,7 +34,28 @@ class TodoItem: Decodable, ObservableObject {
     }
 }
 
-enum TodoItemStatus: String, Decodable {
-    case ADDED
-    case COMPLETED
+private class PublishedWrapper<T> {
+    @Published private(set) var value: T
+
+    init(_ value: Published<T>) {
+        _value = value
+    }
+}
+
+extension Published {
+    var unofficialValue: Value {
+        PublishedWrapper(self).value
+    }
+}
+
+extension Published: Decodable where Value: Decodable {
+    public init(from decoder: Decoder) throws {
+        self.init(wrappedValue: try .init(from: decoder))
+    }
+}
+
+extension Published: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        try unofficialValue.encode(to: encoder)
+    }
 }

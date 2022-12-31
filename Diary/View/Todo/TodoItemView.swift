@@ -9,19 +9,19 @@ import SwiftUI
 
 struct TodoItemView: View {
     
-    @State var isCompleted: Bool = false
+    @EnvironmentObject var anythingApiClient: AnythingApiClient
     
-    @State var isStarred: Bool = false
+    @EnvironmentObject var parentViewModel: TodoListViewModel
     
-    var todoItem: TodoItem
+    @ObservedObject var todoItem: TodoItem
     
     var body: some View {
         NavigationLink {
-            Text("")
+            Text("미구현 입니다....")
         } label: {
             HStack {
                 ZStack {
-                    if isCompleted {
+                    if todoItem.isCompleted {
                         Circle()
                             .fill(.blue)
                             .frame(width: 25, height: 25)
@@ -39,9 +39,15 @@ struct TodoItemView: View {
                     }
                 }
                 .onTapGesture {
-                    isCompleted.toggle()
+                    Task {
+                        if (await anythingApiClient.modifyCompleted(seq:todoItem.seq, isCompleted:!todoItem.isCompleted) ) {
+                            todoItem.isCompleted.toggle()
+                            parentViewModel.objectWillChange.send()
+                        }
+                    }
+                    
                 }
-                .animation(.easeInOut, value: isCompleted)
+                .animation(.easeInOut, value: todoItem.isCompleted)
                 .padding(10)
                 
                 Text(todoItem.contents)
@@ -49,7 +55,7 @@ struct TodoItemView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ZStack {
-                    if isStarred {
+                    if todoItem.isStarred {
                         Image(systemName: "star.fill")
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
@@ -59,23 +65,30 @@ struct TodoItemView: View {
                             .foregroundColor(.gray)
                     }
                 }
-                .onTapGesture {
-                    isStarred.toggle()
-                }
-                .animation(.easeInOut, value: isStarred)
+                .animation(.easeInOut, value: todoItem.isStarred)
                 .padding(10)
-                
+                .onTapGesture {
+                    Task {
+                        if await anythingApiClient.modifyStarred(seq: todoItem.seq, isStarred: !todoItem.isStarred) {
+                            todoItem.isStarred.toggle()
+                            parentViewModel.objectWillChange.send()
+                        }
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
             .cornerRadius(10)
         }
+        .task {
+            print("todoItem")
+            print(Unmanaged.passUnretained(todoItem).toOpaque())
         }
-
-        
+    }
 }
 
 struct TodoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItemView(todoItem: TodoItem(seq: 1, contents: "장보기", status: .ADDED, isStarred: false, startedAt: Date(), endedAt: Date(), numberOfOrder: 1))
+        TodoItemView(todoItem: TodoItem(seq: 1, contents: "장보기", isCompleted: false, isStarred: false, startedAt: Date(), endedAt: Date(), numberOfOrder: 1))
+            .environmentObject(AnythingApiClient())
     }
 }

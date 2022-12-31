@@ -6,17 +6,10 @@
 //
 
 import XCTest
+import Alamofire
 @testable import Diary
 
 class DiaryTests: XCTestCase {
-
-//    override func setUpWithError() throws {
-//        // Put setup code here. This method is called before the invocation of each test method in the class.
-//    }
-//
-//    override func tearDownWithError() throws {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//    }
 
     func testExample() throws {
         let decoder: JSONDecoder = JSONDecoder()
@@ -143,13 +136,30 @@ class DiaryTests: XCTestCase {
         let date: Date = DateFactory.of(year: 2022, month: 8, day: 5, hour: 12, minute: 15, second: 1)
     }
     
-    func testDateComponents() throws {
-    }
-    
-    func testAsdf() {
-        let key = "2022-11-08T17:22:50.416"
-        let date = DateFactory.dateFormatter.date(from: key)
-    }
+    func testDateComponents() async throws {
+//        let decoder = JSONDecoder()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+//        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        
+        let bodyPart2: BodyPart2 = .body(name: "테스트", size: 1)
+//        if BodyPart2.body(name: "테스트", size: 1) == bodyPart2 {
+//
+//        }
+        if case BodyPart2.body(name: "테스트", size: 1) = bodyPart2 {
+            print("출력됨")
+        }
+        if case BodyPart2.body(name: "테스트22", size: 1) = bodyPart2 {
+            print("출력 안됨")
+        }
+        if case BodyPart2.body(name: _, size: 1) = bodyPart2 {
+            print("출력됨")
+        }
+        if case BodyPart2.body(name: let myName, size: let size) = bodyPart2 {
+            print("출력됨")
+            print("내 이름은 \(myName) 이고, 사이즈는 \(size) 이다.")
+        }
+}
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
@@ -157,5 +167,41 @@ class DiaryTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func method(param: String, completion: @escaping (String) -> String) -> String {
+        return completion(param)
+    }
+    
+    func method2(param: String, completion: @escaping (String) -> String) -> String {
+        return completion(param)
+    }
+    
+    func method3(param: String, completion: @escaping (String) -> String) -> String {
+        return completion(param)
+    }
+    
+    
 
 }
+
+enum BodyPart: Int, CaseIterable {
+    case head=10, body, leg=8
+}
+
+enum BodyPart2 {
+    case head(name: String, size: Int)
+    case body(name: String, size: Int)
+    case leg(name: String, length: Int, qty: Int)
+    case short(String)
+}
+
+enum GenericBodyPart<T, R>{
+    case head(T)
+    case body(T, R)
+}
+
+//enum BodyPart3: String, Int {
+//    case head("", 1)
+//    case body("", 2)
+//    case leg("", 3)
+//}

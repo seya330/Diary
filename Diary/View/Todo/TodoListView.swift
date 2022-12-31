@@ -7,30 +7,34 @@
 
 import SwiftUI
 import Alamofire
+import Combine
 
 struct TodoListView: View {
     
     @State var todoItems: [TodoItem] = []
     
+    @ObservedObject var viewModel = TodoListViewModel()
+    
     var body: some View {
         NavigationView {
             List {
                 Section("Section 1") {
-                    ForEach(todoItems, id: \.seq) { todoItem in
-                        if todoItem.status == .ADDED {
+                    ForEach(viewModel.todoItems, id: \.seq) { todoItem in
+                        if !todoItem.isCompleted {
                             TodoItemView(todoItem: todoItem)
+                                .environmentObject(viewModel)
                         }
                     }
                 }
                 Section {
-                    ForEach(todoItems, id: \.seq) { todoItem in
-                        if todoItem.status == .COMPLETED {
+                    ForEach(viewModel.todoItems, id: \.seq) { todoItem in
+                        if todoItem.isCompleted {
                             TodoItemView(todoItem: todoItem)
+                                .environmentObject(viewModel)
                         }
                     }
                 } header: {
                     Button {
-                        
                     } label: {
                         ZStack {
                             Rectangle()
@@ -54,14 +58,17 @@ struct TodoListView: View {
         }
         .frame(maxHeight: .infinity)
         .task {
+            guard let loginUser = authManager.loginUser else {
+                return
+            }
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             AF.request(DiaryConfig.baseUrl + "/api/todos", method: .get, parameters: [
                 "page": 0,
                 "size": 10
-            ], encoding: URLEncoding.default)
+            ], encoding: URLEncoding.default, headers: [.authorization(bearerToken: loginUser.token)])
             .validate(statusCode: 200..<300)
             .responseDecodable(of: PageResult<TodoItem>.self, decoder: decoder) { response in
                 switch(response.result) {
@@ -70,6 +77,7 @@ struct TodoListView: View {
                     for todoItem in pageResult.content {
                         todoItems.append(todoItem)
                     }
+                    viewModel.todoItems = pageResult.content
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

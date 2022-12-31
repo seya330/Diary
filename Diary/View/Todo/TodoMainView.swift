@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TodoMainView: View {
+    
+    @State var isAddModalOpened: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -20,7 +23,7 @@ struct TodoMainView: View {
             TodoListView()
             HStack {
                 Button {
-                    
+                    isAddModalOpened.toggle()
                 } label: {
                     ZStack {
                         Rectangle()
@@ -38,9 +41,15 @@ struct TodoMainView: View {
                             Spacer()
                         }
                     }
-                    
                 }
-
+            }
+        }
+        .sheet(isPresented: $isAddModalOpened) {
+            if #available(iOS 16.0, *) {
+                AddTodoView()
+                    .presentationDetents([.fraction(0.1)])
+            } else {
+                AddTodoView()
             }
         }
     }

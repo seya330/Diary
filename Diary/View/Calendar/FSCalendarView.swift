@@ -4,7 +4,7 @@ import FSCalendar
 
 struct FSCalendarView: UIViewControllerRepresentable {
     
-    @ObservedObject var diaryFetcher: DiaryFetcher = DiaryFetcher()
+    @ObservedObject var diaryFetcher: AnythingApiClient = AnythingApiClient()
     
     @Binding var isShowDetailView: Bool
     

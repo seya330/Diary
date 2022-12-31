@@ -4,7 +4,7 @@ struct AddDiaryView: View {
     
     @Binding var isAddViewShow:Bool
     
-    @EnvironmentObject var diaryFetcher: DiaryFetcher
+    @EnvironmentObject var diaryFetcher: AnythingApiClient
     
     @EnvironmentObject var obj: observed
     
