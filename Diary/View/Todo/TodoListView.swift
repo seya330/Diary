@@ -10,84 +10,87 @@ import Alamofire
 import Combine
 
 struct TodoListView: View {
-    
-    @State var todoItems: [TodoItem] = []
-    
-    @ObservedObject var viewModel = TodoListViewModel()
-    
-    var body: some View {
-        NavigationView {
-            List {
-                Section("Section 1") {
-                    ForEach(viewModel.todoItems, id: \.seq) { todoItem in
-                        if !todoItem.isCompleted {
-                            TodoItemView(todoItem: todoItem)
-                                .environmentObject(viewModel)
-                        }
-                    }
+  
+  @EnvironmentObject var anythingApiClient: AnythingApiClient
+  
+  @EnvironmentObject var viewModel: TodoListViewModel
+  
+  @State var isClosedFinished: Bool = false
+  
+  init() {
+    UITableView.appearance().backgroundColor = .clear
+  }
+  
+  var body: some View {
+    NavigationView {
+      Image("paper_background")
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .edgesIgnoringSafeArea(.all)
+        .overlay {
+          List {
+            Section {
+              ForEach(viewModel.todoItems, id: \.seq) { todoItem in
+                if !todoItem.isCompleted {
+                  TodoItemView(todoItem: todoItem)
                 }
-                Section {
-                    ForEach(viewModel.todoItems, id: \.seq) { todoItem in
-                        if todoItem.isCompleted {
-                            TodoItemView(todoItem: todoItem)
-                                .environmentObject(viewModel)
-                        }
-                    }
-                } header: {
-                    Button {
-                    } label: {
-                        ZStack {
-                            Rectangle()
-                                .fill(.blue)
-                                .frame(width: 80, height: 25)
-                                .cornerRadius(5)
-                            HStack {
-                                Image(systemName: "greaterthan")
-                                    .foregroundColor(.white)
-                                    .rotationEffect(.radians(.pi * 0.5))
-                                Text("완료됨")
-                                    .foregroundColor(.white)
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                
+              }
             }
+            .background(Color.clear)
+            Section {
+              if !isClosedFinished {
+                ForEach(viewModel.todoItems, id: \.seq) { todoItem in
+                  if todoItem.isCompleted {
+                    TodoItemView(todoItem: todoItem)
+                  }
+                }
+              }
+            } header: {
+              Button {
+                isClosedFinished.toggle()
+              } label: {
+                ZStack {
+                  Rectangle()
+                    .fill(.blue)
+                    .frame(width: 80, height: 25)
+                    .cornerRadius(5)
+                  HStack {
+                    if isClosedFinished {
+                      Image(systemName: "chevron.forward")
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 17, weight: .heavy))
+                    } else {
+                      Image(systemName: "chevron.forward")
+                        .foregroundColor(.white)
+                        .font(Font.system(size: 17, weight: .heavy))
+                        .rotationEffect(.radians(.pi * 0.5))
+                    }
+                    Text("완료됨")
+                      .foregroundColor(.white)
+                      .font(.system(size: 17, weight: .heavy))
+                  }
+                }
+              }
+            }
+          }
         }
-        .frame(maxHeight: .infinity)
-        .task {
-            guard let loginUser = authManager.loginUser else {
-                return
-            }
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            AF.request(DiaryConfig.baseUrl + "/api/todos", method: .get, parameters: [
-                "page": 0,
-                "size": 10
-            ], encoding: URLEncoding.default, headers: [.authorization(bearerToken: loginUser.token)])
-            .validate(statusCode: 200..<300)
-            .responseDecodable(of: PageResult<TodoItem>.self, decoder: decoder) { response in
-                switch(response.result) {
-                case .success(let pageResult):
-                    todoItems.removeAll()
-                    for todoItem in pageResult.content {
-                        todoItems.append(todoItem)
-                    }
-                    viewModel.todoItems = pageResult.content
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        }
+      
     }
+    .frame(maxHeight: .infinity)
+    .background {
+      Image("paper_background").resizable()
+        .ignoresSafeArea()
+    }
+    .task {
+      await viewModel.refreshTodoItems()
+    }
+  }
 }
 
 struct TodoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodoListView()
-    }
+  static var previews: some View {
+    TodoListView()
+      .environmentObject(AnythingApiClient())
+      .environmentObject(TodoListViewModel())
+  }
 }

@@ -8,55 +8,61 @@
 import SwiftUI
 
 struct TodoMainView: View {
-    
-    @State var isAddModalOpened: Bool = false
-    
-    var body: some View {
-        VStack {
+  
+  @EnvironmentObject var viewModel: TodoListViewModel
+  
+  @EnvironmentObject var todoUIViewModel: TodoUIViewModel
+  
+  @State var isAddModalOpened: Bool = false
+  
+  var body: some View {
+    VStack {
+      HStack {
+        Spacer()
+        Image(systemName: "person.badge.plus")
+          .padding([.trailing, .bottom, .top], 5)
+        Image(systemName: "ellipsis")
+          .padding([.trailing, .bottom, .top], 5)
+      }
+      TodoListView()
+      HStack {
+        Button {
+          todoUIViewModel.isAddModalOpened.toggle()
+        } label: {
+          ZStack {
+            Rectangle()
+              .frame(maxHeight: 70)
+              .cornerRadius(15)
+              .padding(10)
             HStack {
-                Spacer()
-                Image(systemName: "person.badge.plus")
-                    .padding([.trailing, .bottom, .top], 5)
-                Image(systemName: "ellipsis")
-                    .padding([.trailing, .bottom, .top], 5)
+              Image(systemName: "plus")
+                .foregroundColor(.white)
+                .font(.system(size: 25))
+                .padding(30)
+              Text("작업 추가")
+                .foregroundColor(.white)
+                .font(.system(size: 20))
+              Spacer()
             }
-            TodoListView()
-            HStack {
-                Button {
-                    isAddModalOpened.toggle()
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(maxHeight: 70)
-                            .cornerRadius(15)
-                            .padding(10)
-                        HStack {
-                            Image(systemName: "plus")
-                                .foregroundColor(.white)
-                                .font(.system(size: 25))
-                                .padding(30)
-                            Text("작업 추가")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                            Spacer()
-                        }
-                    }
-                }
-            }
+          }
         }
-        .sheet(isPresented: $isAddModalOpened) {
-            if #available(iOS 16.0, *) {
-                AddTodoView()
-                    .presentationDetents([.fraction(0.1)])
-            } else {
-                AddTodoView()
-            }
-        }
+      }
     }
+    .sheet(isPresented: $todoUIViewModel.isAddModalOpened) {
+      if #available(iOS 16.0, *) {
+        TodoAddView()
+          .presentationDetents([.fraction(0.1)])
+      } else {
+        TodoAddView()
+      }
+    }
+  }
 }
 
 struct TodoMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodoMainView()
-    }
+  static var previews: some View {
+    TodoMainView()
+      .environmentObject(TodoListViewModel())
+      .environmentObject(TodoUIViewModel())
+  }
 }
