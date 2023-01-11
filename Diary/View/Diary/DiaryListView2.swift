@@ -6,7 +6,7 @@ struct DiaryListView2: View {
     
     @State private var isLoadedContents: Bool = false
     
-    @EnvironmentObject var diaryFetcher: DiaryFetcher
+    @EnvironmentObject var diaryFetcher: AnythingApiClient
     
     var body: some View {
         VStack(spacing: 20) {
@@ -53,7 +53,7 @@ struct DiaryListView2: View {
 
 struct DiaryListView2_Previews: PreviewProvider {
     static var previews: some View {
-        DiaryListView2().environmentObject(DiaryFetcher())
+        DiaryListView2().environmentObject(AnythingApiClient())
     }
 }
 

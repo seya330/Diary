@@ -26,7 +26,6 @@ struct LoginView: View {
                 }
             }
         }
-        .frame(width: .infinity, height: .infinity)
         .onOpenURL { url in
             GIDSignIn.sharedInstance.handle(url)
         }

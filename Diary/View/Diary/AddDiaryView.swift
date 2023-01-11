@@ -4,7 +4,7 @@ struct AddDiaryView: View {
     
     @Binding var isAddViewShow:Bool
     
-    @EnvironmentObject var diaryFetcher: DiaryFetcher
+    @EnvironmentObject var diaryFetcher: AnythingApiClient
     
     @EnvironmentObject var obj: observed
     
@@ -43,10 +43,8 @@ struct AddDiaryView: View {
                             .foregroundColor(.black)
                             .font(.system(size: 30))
                             .padding([.trailing, .bottom], 10)
-                    }
-                    
+                    }   
                 }
-                
             }
         .background(content: {
             Image("paper_background").resizable()

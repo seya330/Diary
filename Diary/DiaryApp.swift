@@ -17,7 +17,7 @@ struct DiaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(DiaryFetcher())
+                .environmentObject(AnythingApiClient())
                 .environmentObject(observed())
                 .environmentObject(authManager)
         }
