@@ -48,6 +48,12 @@ struct TodoMainView: View {
         }
       }
     }
+    .background(content: {
+        Image("paper_background").resizable()
+            .aspectRatio(contentMode: .fill)
+            .edgesIgnoringSafeArea(.all)
+            .opacity(0.8)
+    })
     .sheet(isPresented: $todoUIViewModel.isAddModalOpened) {
       if #available(iOS 16.0, *) {
         TodoAddView()

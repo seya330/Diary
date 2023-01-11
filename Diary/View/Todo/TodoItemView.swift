@@ -44,7 +44,6 @@ struct TodoItemView: View {
               parentViewModel.objectWillChange.send()
             }
           }
-          
         }
         .animation(.easeInOut, value: todoItem.isCompleted)
         .padding(10)

@@ -17,70 +17,65 @@ struct TodoListView: View {
   
   @State var isClosedFinished: Bool = false
   
-  init() {
-    UITableView.appearance().backgroundColor = .clear
-  }
-  
   var body: some View {
     NavigationView {
-      Image("paper_background")
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .edgesIgnoringSafeArea(.all)
-        .overlay {
-          List {
-            Section {
+      if #available(iOS 16.0, *) {
+        List {
+          Section {
+            ForEach(viewModel.todoItems, id: \.seq) { todoItem in
+              if !todoItem.isCompleted {
+                TodoItemView(todoItem: todoItem)
+              }
+            }
+          }
+          .listRowBackground(Color.clear)
+          Section {
+            if !isClosedFinished {
               ForEach(viewModel.todoItems, id: \.seq) { todoItem in
-                if !todoItem.isCompleted {
+                if todoItem.isCompleted {
                   TodoItemView(todoItem: todoItem)
                 }
               }
             }
-            .background(Color.clear)
-            Section {
-              if !isClosedFinished {
-                ForEach(viewModel.todoItems, id: \.seq) { todoItem in
-                  if todoItem.isCompleted {
-                    TodoItemView(todoItem: todoItem)
-                  }
-                }
-              }
-            } header: {
-              Button {
-                isClosedFinished.toggle()
-              } label: {
-                ZStack {
-                  Rectangle()
-                    .fill(.blue)
-                    .frame(width: 80, height: 25)
-                    .cornerRadius(5)
-                  HStack {
-                    if isClosedFinished {
-                      Image(systemName: "chevron.forward")
-                        .foregroundColor(.white)
-                        .font(Font.system(size: 17, weight: .heavy))
-                    } else {
-                      Image(systemName: "chevron.forward")
-                        .foregroundColor(.white)
-                        .font(Font.system(size: 17, weight: .heavy))
-                        .rotationEffect(.radians(.pi * 0.5))
-                    }
-                    Text("완료됨")
+          } header: {
+            Button {
+              isClosedFinished.toggle()
+            } label: {
+              ZStack {
+                Rectangle()
+                  .frame(width: 80, height: 25)
+                  .cornerRadius(5)
+                HStack {
+                  if isClosedFinished {
+                    Image(systemName: "chevron.forward")
                       .foregroundColor(.white)
-                      .font(.system(size: 17, weight: .heavy))
+                      .font(Font.system(size: 17, weight: .heavy))
+                  } else {
+                    Image(systemName: "chevron.forward")
+                      .foregroundColor(.white)
+                      .font(Font.system(size: 17, weight: .heavy))
+                      .rotationEffect(.radians(.pi * 0.5))
                   }
+                  Text("완료됨")
+                    .foregroundColor(.white)
+                    .font(.system(size: 17, weight: .heavy))
                 }
               }
             }
           }
         }
-      
+        .scrollContentBackground(.hidden)
+        .background(content: {
+            Image("paper_background").resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.8)
+        })
+      } else {
+        Text("ios 버전을 최신 버전으로 업데이트 해 주세요.")
+      }
     }
     .frame(maxHeight: .infinity)
-    .background {
-      Image("paper_background").resizable()
-        .ignoresSafeArea()
-    }
     .task {
       await viewModel.refreshTodoItems()
     }

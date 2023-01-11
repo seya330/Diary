@@ -43,10 +43,8 @@ struct AddDiaryView: View {
                             .foregroundColor(.black)
                             .font(.system(size: 30))
                             .padding([.trailing, .bottom], 10)
-                    }
-                    
+                    }   
                 }
-                
             }
         .background(content: {
             Image("paper_background").resizable()
