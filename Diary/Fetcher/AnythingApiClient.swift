@@ -101,7 +101,7 @@ final class AnythingApiClient: ObservableObject {
   func postDiary(content: String, completion: @escaping () -> Void = {}) {
     AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .post, parameters: [
       "content": content
-    ], encoding: JSONEncoding.default)
+    ], encoding: JSONEncoding.default, headers: authHeader())
     .validate(statusCode: 200..<300)
     .responseData { response in
       switch response.result {
@@ -114,7 +114,7 @@ final class AnythingApiClient: ObservableObject {
   }
   
   func getDiaries(parameters: Parameters, completion: @escaping () -> Void = {}) {
-    AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .get, parameters: parameters, encoding: URLEncoding.default)
+    AF.request(DiaryConfig.baseUrl + "/api/diaries", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: authHeader())
       .validate(statusCode: 200..<300)
       .responseDecodable(of: PageResult<DiaryDecodable>.self, decoder: decoder) { response in
         switch response.result {
