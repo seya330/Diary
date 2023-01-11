@@ -37,4 +37,24 @@ class AuthManager: ObservableObject {
             }
         }
     }
+  
+  func refreshGoogleLogin(user: GIDGoogleUser) {
+    user.authentication.do { auth, error in
+        guard error == nil else {return}
+        guard let auth else {return}
+        guard let token = auth.idToken else {return}
+        
+        AF.request(DiaryConfig.baseUrl + "/auth/google", method: .post, parameters: ["token": token], encoding: JSONEncoding.default)
+        .validate(statusCode: 200..<300)
+        .responseDecodable(of: User.self, completionHandler: { response in
+            switch response.result {
+            case .success(let response):
+                self.loginUser = response
+                self.isLogined = true
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+  }
 }
